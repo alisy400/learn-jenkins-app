@@ -22,9 +22,6 @@ pipeline {
         }
 
         stage('Test'){
-            agent any {
-                reuseNode true
-            }
             steps{
                 sh '''
                 echo 'Test stage'
