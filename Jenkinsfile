@@ -20,7 +20,8 @@ pipeline {
                 ls -la    
                 '''
             }
-            
+                //npm run build-- This should be put above within the the three apostrophies, but will take too much time and pipeline works fine without it.
+                
         }
 
         stage('Tests') {
