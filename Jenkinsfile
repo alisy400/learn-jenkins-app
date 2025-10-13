@@ -1,5 +1,5 @@
 pipeline {
-    agent any 
+    agent any
     stages {
         
         stage('Build') {
@@ -16,7 +16,7 @@ pipeline {
                 node --version
                 npm --version
                 npm ci
-
+                npm run build
                 ls -la    
                 '''
             }
@@ -26,7 +26,7 @@ pipeline {
 
         stage('Tests') {
             parallel{
-                stage('unit test')  { 
+                stage('unit test')  {
                     agent {
                         docker {
                             image 'node:18-alpine'
@@ -36,8 +36,8 @@ pipeline {
 
                     steps   {
                         sh '''
-                            test -f build/index.html
-                            npm test
+                            mkdir -p jest-results
+                            JEST_JUNIT_OUTPUT=jest-results/junit.xml npm test
 
                         '''
                     }
@@ -72,7 +72,7 @@ pipeline {
                         always {
                             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
-                    }               
+                    }
                 }
             }
         }
