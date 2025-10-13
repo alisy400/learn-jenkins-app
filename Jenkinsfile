@@ -73,7 +73,7 @@ pipeline {
                 //             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                 //         }
                 //     }               
-                }
+                // }
             }
         }
     }
