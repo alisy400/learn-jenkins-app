@@ -86,7 +86,7 @@ pipeline {
             steps{
                 sh  '''
                 npm install netlify-cli
-                ode_modules/.bin/netlify --version
+                ode_modules/.bin/netlify --version 
                 '''
             }   
         }
