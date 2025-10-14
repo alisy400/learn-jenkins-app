@@ -17,7 +17,7 @@ pipeline {
                 npm --version
                 npm ci
                 npm run build
-                ls -la    
+                ls -la
                 '''
             }   
         }
@@ -73,6 +73,22 @@ pipeline {
                     }
                 }
             }
+        }
+
+                stage('Build') {
+            agent{
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+
+            steps{
+                sh  '''
+                npm install netlify-cli
+                ode_modules/.bin/netlify --version
+                '''
+            }   
         }
     }
 }
